@@ -1,0 +1,1065 @@
+{
+	"info": {
+		"_postman_id": "486a08f2-9450-45aa-a9af-2625e9122c4e",
+		"name": "alkemy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21448771"
+	},
+	"item": [
+		{
+			"name": "personajes",
+			"item": [
+				{
+					"name": "Eliminar personaje",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"xsrf-token\", decodeURIComponent(pm.cookies.get(\"XSRF-TOKEN\")))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTE0Nzc0OCwiZXhwIjoxNjY1MjM0MTQ4fQ.F2x65Vv6FMvj3ZBWi_hRQhcLKyGTIdRgle_S6Oa_4cCUxyibDEtNqRI_k-FIkRR9HL3qO8MhKMqpZdKJcug-Qw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/characters/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"characters",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar personaje",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQwODI0NSwiZXhwIjoxNjY1NDk0NjQ1fQ.837F8Q4PlKQumZeJn68I5m4YNi6jlAwjRnPjuzmYCfRPa4CW1q0jqUP___OapIeZdhOVgw5iqCMkn7j69K67pQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\" : 7,\r\n    \"imagen\" : \"imagen2.jpg\",\r\n    \"nombre\" : \"moana\",\r\n    \"edad\" : 20,\r\n    \"peso\" : 23.5,\r\n    \"historia\" : \"disney\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/characters",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar por nombre de personaje",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQwODI0NSwiZXhwIjoxNjY1NDk0NjQ1fQ.837F8Q4PlKQumZeJn68I5m4YNi6jlAwjRnPjuzmYCfRPa4CW1q0jqUP___OapIeZdhOVgw5iqCMkn7j69K67pQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8081/characters?name=moana",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "moana"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filtrar por edad",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"xsrf-token\", decodeURIComponent(pm.cookies.get(\"XSRF-TOKEN\")))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQzNzc3NSwiZXhwIjoxNjY1NTI0MTc1fQ.O-6pOf1Zuoub-8fZHIYPf0YgUoj7HrSLpwQuy3TXgL97n6AjIpxOHt3Ouhrp0rJ9Viv1QpGsrwc054gON3vodQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8081/characters?age=20",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear personaje",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"xsrf-token\", decodeURIComponent(pm.cookies.get(\"XSRF-TOKEN\")))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"strictSSL": true,
+						"followRedirects": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQzNzc3NSwiZXhwIjoxNjY1NTI0MTc1fQ.O-6pOf1Zuoub-8fZHIYPf0YgUoj7HrSLpwQuy3TXgL97n6AjIpxOHt3Ouhrp0rJ9Viv1QpGsrwc054gON3vodQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"imagen\" : \"imagen4.jpg\",\r\n    \"nombre\" : \"poca\",\r\n    \"edad\" : 40,\r\n    \"peso\" : 50,\r\n    \"historia\" : \"disney\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/characters",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar por peso",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQwODI0NSwiZXhwIjoxNjY1NDk0NjQ1fQ.837F8Q4PlKQumZeJn68I5m4YNi6jlAwjRnPjuzmYCfRPa4CW1q0jqUP___OapIeZdhOVgw5iqCMkn7j69K67pQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/characters?peso=23.5",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "peso",
+									"value": "23.5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mostrar nombre y imagen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQwODI0NSwiZXhwIjoxNjY1NDk0NjQ1fQ.837F8Q4PlKQumZeJn68I5m4YNi6jlAwjRnPjuzmYCfRPa4CW1q0jqUP___OapIeZdhOVgw5iqCMkn7j69K67pQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/characters",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detalles de personajes",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "peliculas",
+			"item": [
+				{
+					"name": "crear pelicula",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"xsrf-token\", decodeURIComponent(pm.cookies.get(\"XSRF-TOKEN\")))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQzNzc3NSwiZXhwIjoxNjY1NTI0MTc1fQ.O-6pOf1Zuoub-8fZHIYPf0YgUoj7HrSLpwQuy3TXgL97n6AjIpxOHt3Ouhrp0rJ9Viv1QpGsrwc054gON3vodQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"calificacion\": 3,\r\n    \"fecha\": \"2020-07-23\",\r\n    \"imagen\": \"imagen4.jpg\",\r\n    \"nombre\": \"aa\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mostrar peliculas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQwODI0NSwiZXhwIjoxNjY1NDk0NjQ1fQ.837F8Q4PlKQumZeJn68I5m4YNi6jlAwjRnPjuzmYCfRPa4CW1q0jqUP___OapIeZdhOVgw5iqCMkn7j69K67pQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar peliculas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"xsrf-token\", decodeURIComponent(pm.cookies.get(\"XSRF-TOKEN\")))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQwODI0NSwiZXhwIjoxNjY1NDk0NjQ1fQ.837F8Q4PlKQumZeJn68I5m4YNi6jlAwjRnPjuzmYCfRPa4CW1q0jqUP___OapIeZdhOVgw5iqCMkn7j69K67pQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/movies/8",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies",
+								"8"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar pelicula",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"xsrf-token\", decodeURIComponent(pm.cookies.get(\"XSRF-TOKEN\")))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTE0Nzc0OCwiZXhwIjoxNjY1MjM0MTQ4fQ.F2x65Vv6FMvj3ZBWi_hRQhcLKyGTIdRgle_S6Oa_4cCUxyibDEtNqRI_k-FIkRR9HL3qO8MhKMqpZdKJcug-Qw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n        \"imagen\": \"imagen10.jpg\",\r\n        \"nombre\": \"La bella y la bestia\",\r\n        \"fecha\": \"2020-07-22\",\r\n        \"calificacion\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por nombre",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTM0MjE0OCwiZXhwIjoxNjY1NDI4NTQ4fQ.jBtPvO39Mv9jwotQC_oY7ieYhO4RH3MuzRBCXj_gQzj-lW7KWyYhM_1xbhS39nDtXDgRCCN71mQh1YJVmoa1-A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "la bella y la bestia",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "moana",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/movies?name=ana",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "ana"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ordenar  peliculas ASC o DESC por fecha",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQwODI0NSwiZXhwIjoxNjY1NDk0NjQ1fQ.837F8Q4PlKQumZeJn68I5m4YNi6jlAwjRnPjuzmYCfRPa4CW1q0jqUP___OapIeZdhOVgw5iqCMkn7j69K67pQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "desc",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/movies?order=asc",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregar personaje a una pelicula",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"xsrf-token\", decodeURIComponent(pm.cookies.get(\"XSRF-TOKEN\")))"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTMzNTEzMSwiZXhwIjoxNjY1NDIxNTMxfQ.dIDc-q1d-2v8ftXAihUvEOD-6fSgzsK_8VQeVxeiLrhFUkO3d73gI7McCEsnCoP2sn1hRSNvakPPc9g9pXX68g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8081/movies/1/characters/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies",
+								"1",
+								"characters",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar personaje a la pelicula",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTMzNTEzMSwiZXhwIjoxNjY1NDIxNTMxfQ.dIDc-q1d-2v8ftXAihUvEOD-6fSgzsK_8VQeVxeiLrhFUkO3d73gI7McCEsnCoP2sn1hRSNvakPPc9g9pXX68g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/movies/1/characters/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies",
+								"1",
+								"characters",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mostrar detalles de las peliculas",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "detalles de las peliculas",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "genero",
+			"item": [
+				{
+					"name": "mostrar genero",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTQwODI0NSwiZXhwIjoxNjY1NDk0NjQ1fQ.837F8Q4PlKQumZeJn68I5m4YNi6jlAwjRnPjuzmYCfRPa4CW1q0jqUP___OapIeZdhOVgw5iqCMkn7j69K67pQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/genero",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"genero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar genero",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTE0Nzc0OCwiZXhwIjoxNjY1MjM0MTQ4fQ.F2x65Vv6FMvj3ZBWi_hRQhcLKyGTIdRgle_S6Oa_4cCUxyibDEtNqRI_k-FIkRR9HL3qO8MhKMqpZdKJcug-Qw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/genero/?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"genero",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear genero",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGlhbiIsImlhdCI6MTY2NTE4NjUxNCwiZXhwIjoxNjY1MjcyOTE0fQ.OjlsGUwFwCvdJ3LKuXDTZkjkL9-2HVLeLHqPh4sbXLKszZaqJ2SjyTzSyJa7UZQGE089roU2T-LCgta-ckbOIw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" : \"comedia\",\r\n    \"imagen\" : \"aaa.jpa\",\r\n    \"pelicula\" : [{\r\n     \"calificacion\": 3,\r\n    \"fecha\": \"2020-07-23\",\r\n    \"imagen\": \"imagen4.jpg\",\r\n    \"nombre\": \"el extraño mundo de jack\"\r\n\r\n    }]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/genero",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"genero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar genero",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "password",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/genero",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"genero"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar por id",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "password",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8081/movies?genre=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" :\"elian\",\r\n    \"email\" : \"elianpareja5@gmail.co\",\r\n    \"password\" : \"555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-XSRF-TOKEN",
+								"value": "{{xsrf-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\" :\"elian\",\r\n    \"password\" : \"555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
